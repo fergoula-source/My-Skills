@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   Platform,
   StyleSheet,
@@ -8,17 +9,25 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 
 export function Home() {
+  const [newSkill, setNewSkill] = useState("")
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome, Fernando.</Text>
 
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input}
+        placeholder="Write your skill"
+        placeholderTextColor="#555"
+        onChangeText={setNewSkill}
+        value={newSkill}
+      />
 
       <TouchableOpacity style={styles.button} activeOpacity={0.5}>
         <Text style={styles.buttonText}>ADD</Text>
       </TouchableOpacity>
 
-      {/* <Text style={styles.textFooter}>Unicruz</Text> */}
+      <Text style={styles.textFooter}>{newSkill}</Text>
     </SafeAreaView>
   )
 }
