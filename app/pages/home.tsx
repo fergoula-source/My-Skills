@@ -26,8 +26,6 @@ export function Home() {
     setMySkills((oldState) => [...oldState, skillData])
   }
 
-  console.log(mySkills)
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome, Fernando.</Text>
@@ -48,7 +46,11 @@ export function Home() {
         <Text style={styles.buttonText}>ADD</Text>
       </TouchableOpacity>
 
-      <Text style={styles.textFooter}>{newSkill}</Text>
+      {mySkills.map((skill) => (
+        <TouchableOpacity key={skill.id} style={styles.skillButton}>
+          <Text style={styles.skillText}>{skill.name}</Text>
+        </TouchableOpacity>
+      ))}
     </SafeAreaView>
   )
 }
@@ -85,7 +87,15 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
   },
-  textFooter: {
+  skillButton: {
+    backgroundColor: "#1f1e25",
+    padding: 15,
+    borderRadius: 7,
+    marginTop: 12,
+    alignItems: "center",
+  },
+  skillText: {
     color: "#fff",
+    fontSize: 17,
   },
 })
