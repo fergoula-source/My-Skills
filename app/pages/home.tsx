@@ -39,10 +39,10 @@ export function Home() {
         value={newSkill}
       />
 
-      <Button onPress={handleAddNewSkill} />
+      <Button title="ADD" onPress={handleAddNewSkill} activeOpacity={0.5} />
 
       {mySkills.map((skill) => (
-        <SkillCard key={skill.id} name={skill.name} />
+        <SkillCard key={skill.id} name={skill.name} activeOpacity={1} />
       ))}
     </SafeAreaView>
   )
