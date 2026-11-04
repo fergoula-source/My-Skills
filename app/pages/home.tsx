@@ -8,8 +8,25 @@ import {
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
+interface SkillData {
+  id: number
+  name: string
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState("")
+  const [mySkills, setMySkills] = useState<SkillData[]>([])
+
+  function handleAddNewSkill() {
+    const skillData: SkillData = {
+      id: new Date().getTime(),
+      name: newSkill,
+    }
+
+    setMySkills((oldState) => [...oldState, skillData])
+  }
+
+  console.log(mySkills)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,7 +40,11 @@ export function Home() {
         value={newSkill}
       />
 
-      <TouchableOpacity style={styles.button} activeOpacity={0.5}>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.5}
+        onPress={handleAddNewSkill}
+      >
         <Text style={styles.buttonText}>ADD</Text>
       </TouchableOpacity>
 
