@@ -4,10 +4,10 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Button } from "../../components/Button"
+import { SkillCard } from "../../components/SkillCard"
 
 interface SkillData {
   id: number
@@ -42,9 +42,7 @@ export function Home() {
       <Button onPress={handleAddNewSkill} />
 
       {mySkills.map((skill) => (
-        <TouchableOpacity key={skill.id} style={styles.skillButton}>
-          <Text style={styles.skillText}>{skill.name}</Text>
-        </TouchableOpacity>
+        <SkillCard key={skill.id} name={skill.name} />
       ))}
     </SafeAreaView>
   )
@@ -69,16 +67,5 @@ const styles = StyleSheet.create({
     padding: Platform.OS === "ios" ? 15 : 20,
     marginTop: 30,
     borderRadius: 7,
-  },
-  skillButton: {
-    backgroundColor: "#1f1e25",
-    padding: 15,
-    borderRadius: 7,
-    marginTop: 12,
-    alignItems: "center",
-  },
-  skillText: {
-    color: "#fff",
-    fontSize: 17,
   },
 })
