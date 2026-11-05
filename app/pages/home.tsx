@@ -1,7 +1,7 @@
 import { useState } from "react"
 import {
   Platform,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -42,11 +42,14 @@ export function Home() {
 
       <Button title="ADD" onPress={handleAddNewSkill} activeOpacity={0.5} />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {mySkills.map((skill) => (
-          <SkillCard key={skill.id} name={skill.name} activeOpacity={1} />
-        ))}
-      </ScrollView>
+      <FlatList
+        data={mySkills}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <SkillCard name={item.name} activeOpacity={1} />
+        )}
+        showsVerticalScrollIndicator={false}
+      />
     </SafeAreaView>
   )
 }
