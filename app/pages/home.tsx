@@ -45,6 +45,10 @@ export function Home() {
     setMySkills((oldState) => [...oldState, skillData])
   }
 
+  function handleRemoveSkill(id: number) {
+    setMySkills((oldState) => oldState.filter((skill) => skill.id !== id))
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome, Fernando.</Text>
@@ -64,7 +68,11 @@ export function Home() {
         data={mySkills}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <SkillCard name={item.name} activeOpacity={1} />
+          <SkillCard
+            name={item.name}
+            activeOpacity={0.7}
+            onPress={() => handleRemoveSkill(item.id)}
+          />
         )}
         showsVerticalScrollIndicator={false}
       />
