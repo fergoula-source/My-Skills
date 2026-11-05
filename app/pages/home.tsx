@@ -18,10 +18,23 @@ interface SkillData {
 export function Home() {
   const [newSkill, setNewSkill] = useState("")
   const [mySkills, setMySkills] = useState<SkillData[]>([])
+  const [greetings, setGreetings] = useState("")
 
   useEffect(() => {
     console.log("useEffect executado")
   }, [mySkills])
+
+  useEffect(() => {
+    const currentHour = new Date().getHours()
+
+    if (currentHour < 12) {
+      setGreetings("Good morning")
+    } else if (currentHour < 18) {
+      setGreetings("Good afternoon")
+    } else {
+      setGreetings("Good night")
+    }
+  }, [])
 
   function handleAddNewSkill() {
     const skillData: SkillData = {
@@ -35,6 +48,7 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome, Fernando.</Text>
+      <Text style={styles.greetings}>{greetings}</Text>
 
       <TextInput
         style={styles.input}
@@ -69,6 +83,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 24,
     fontWeight: "bold",
+  },
+  greetings: {
+    color: "#fff",
   },
   input: {
     backgroundColor: "#1f1e25",
