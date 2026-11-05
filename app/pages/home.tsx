@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Platform,
   FlatList,
@@ -18,6 +18,10 @@ interface SkillData {
 export function Home() {
   const [newSkill, setNewSkill] = useState("")
   const [mySkills, setMySkills] = useState<SkillData[]>([])
+
+  useEffect(() => {
+    console.log("useEffect executado")
+  }, [mySkills])
 
   function handleAddNewSkill() {
     const skillData: SkillData = {
